@@ -74,5 +74,22 @@
 ## Goal
 - WinInsTool is a python script that shows you a list of **212** app to download to your fresh windows machine. It could **install** various webrowser, programming tools (IDEs, programming laguages...), media players...
 ## Requirements
-- You need to Windows 10 version 1809 (build 17763) or later to be able to use WinInsTool, to check your windows virsion
-  
+- You need to Windows 10 version 1809 (build 17763) or later to be able to use WinInsTool, to check your windows virsion open **Command Prompt** and run: <pre>systeminfo | findstr /B /C:"OS Name" /C:"OS Version"</pre>
+and you shoud see something like this:
+<p align="center">
+  <img width="1734" height="987" alt="image" src="https://github.com/user-attachments/assets/c333a132-b38e-4aae-a9dd-4d51b02865b2" />
+</p>
+*or* if you like **PowerShell** you can use:
+<pre>winver</pre>
+then you shoud see in a new window:
+<p align="center">
+  <img width="691" height="621" alt="Screenshot 2025-11-16 175405" src="https://github.com/user-attachments/assets/293d1147-6322-4396-ad05-5c355c183dc3" />
+</p>
+
+## How to use?
+-We recommend running WinInsTool.exe thought the **cmd** by going to the director you downloaded in it the WinInsTool.exe, then run:
+<pre>WinInsTool.exex</pre>
+*if* you do everything correctly you shoud see:
+<p align="center">
+  <img width="1734" height="983" alt="image" src="https://github.com/user-attachments/assets/f0459340-701b-4fc9-a75b-b21cf5fb8b68" />
+</p>
