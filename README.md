@@ -56,13 +56,6 @@
     </td>
     <td style="width:10px;"></td>
     <!-- Preview Branch Button -->
-    <td>
-      <a href="https://github.com/Iinitialb/WinInsTool/tree/preview" style="text-decoration:none;">
-        <table style="border-collapse:collapse;border-radius:6px;overflow:hidden;font-family:sans-serif;">
-          <tr>
-            <td style="background-color:#2c2c2c;color:white;padding:10px 20px;font-weight:bold;border:none;">
-              Preview project model
-            </td>
           </tr>
         </table>
       </a>
