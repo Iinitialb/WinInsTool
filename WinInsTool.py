@@ -87,6 +87,7 @@ while True:
         user_choice = input("\nSelect an option (1-4): ").lower()
     except EOFError:
         print("No input available. Skipping interactive mode.")
+        break
         if user_choice in ["1", "sh"]:
             show_packages()
             while True:
@@ -94,6 +95,7 @@ while True:
                     selection = input("\nEnter package number to toggle selection or 'b' to go back: ").lower()
                 except EOFError:
                     print("No input available. Skipping interactive mode.")
+                    break
                 if selection == "b":
                     welcome_message()
                     if len(selepack) == 0:
@@ -144,6 +146,7 @@ while True:
                     input("Press Enter to return to the main menu...")
                 except EOFError:
                     print("No input available. Skipping interactive mode.")
+                    break
                 welcome_message()
             else:
                 print("Installing selected packages: " + ", ".join(selepack))
@@ -170,6 +173,7 @@ while True:
                                     input("press any key to continue...")
                                 except EOFError:
                                     print("No input available. Skipping interactive mode.")
+                                    break
                                 break
                             except subprocess.CalledProcessError:
                                 winget_av = False
@@ -178,6 +182,7 @@ while True:
                                     input("press any key to continue...")
                                 except EOFError:
                                     print("No input available. Skipping interactive mode.")
+                                    break
                                 break
                         elif choic == "n":
                             print("winget installation skipped.")
@@ -189,6 +194,7 @@ while True:
                         input("press any key to continue...")
                     except EOFError:
                         print("No input available. Skipping interactive mode.")
+                        break
                 if choco_comp:
                     print("Checking for choco availability....")
                     try:
@@ -201,6 +207,7 @@ while True:
                         chs = input("Do you want to install chocolatey now? (y/n): ").lower()
                     except EOFError:
                         print("No input available. Skipping interactive mode.")
+                        break
                         if chs == "y":
                             try:
                                 subprocess.run(["powershell", "-Command", "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"], check=True)
@@ -215,6 +222,7 @@ while True:
                                 break
                             except EOFError:
                                 print("No input available. Skipping interactive mode.")
+                                break
                         elif chs == "n":
                             print("chocolatey installation skipped.")
                             choco_av = False
@@ -225,11 +233,13 @@ while True:
                         input("press any key to continue...")
                     except EOFError:
                         print("No input available. Skipping interactive mode.")
+                        break
                 if winget_av:
                     try:
                         input("press any key to start winget installation...")
                     except EOFError:
-                        print("No input available. Skipping interactive mode.")    
+                        print("No input available. Skipping interactive mode.")
+                        break
                     print("Starting winget packages installation...")
                     print("Installing: " + ", ".join(winget_comp))
                     for pkg in tqdm(winget_comp, desc="Installing with winget", unit="pkg"):
@@ -264,5 +274,6 @@ while True:
             break
         else:
             print("Invalid option. Try again.")
+
 
 
