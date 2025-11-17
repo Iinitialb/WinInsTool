@@ -83,11 +83,17 @@ def welcome_message():
 welcome_message()
 
 while True:
+    try:
         user_choice = input("\nSelect an option (1-4): ").lower()
+    except EOFError:
+        print("No input available. Skipping interactive mode.")
         if user_choice in ["1", "sh"]:
             show_packages()
             while True:
-                selection = input("\nEnter package number to toggle selection or 'b' to go back: ").lower()
+                try:
+                    selection = input("\nEnter package number to toggle selection or 'b' to go back: ").lower()
+                except EOFError:
+                    print("No input available. Skipping interactive mode.")
                 if selection == "b":
                     welcome_message()
                     if len(selepack) == 0:
@@ -134,7 +140,10 @@ while True:
         elif user_choice in ["4", "in"]:
             if len(selepack) == 0:
                 print("No packages selected for installation.")
-                input("Press Enter to return to the main menu...")
+                try:
+                    input("Press Enter to return to the main menu...")
+                except EOFError:
+                    print("No input available. Skipping interactive mode.")
                 welcome_message()
             else:
                 print("Installing selected packages: " + ", ".join(selepack))
@@ -157,12 +166,18 @@ while True:
                                 subprocess.run(["powershell", "-Command", "Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile winget.msixbundle; Add-AppxPackage winget.msixbundle"], check=True)
                                 winget_av = True
                                 print("winget installed successfully. Please restart the tool.")
-                                input("press any key to continue...")
+                                try:
+                                    input("press any key to continue...")
+                                except EOFError:
+                                    print("No input available. Skipping interactive mode.")
                                 break
                             except subprocess.CalledProcessError:
                                 winget_av = False
                                 print("Failed to install winget. Please install it manually and try again.")
-                                input("press any key to continue...")
+                                try:
+                                    input("press any key to continue...")
+                                except EOFError:
+                                    print("No input available. Skipping interactive mode.")
                                 break
                         elif choic == "n":
                             print("winget installation skipped.")
@@ -170,7 +185,10 @@ while True:
                 else:
                     winget_av = False
                     print("No packages selected for winget installation.")
-                    input("press any key to continue...")
+                    try:
+                        input("press any key to continue...")
+                    except EOFError:
+                        print("No input available. Skipping interactive mode.")
                 if choco_comp:
                     print("Checking for choco availability....")
                     try:
@@ -181,6 +199,8 @@ while True:
                     except (subprocess.CalledProcessError, FileNotFoundError):
                         print("chocolatey is not available. Installing chocolatey...")
                         chs = input("Do you want to install chocolatey now? (y/n): ").lower()
+                    except EOFError:
+                        print("No input available. Skipping interactive mode.")
                         if chs == "y":
                             try:
                                 subprocess.run(["powershell", "-Command", "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"], check=True)
@@ -193,15 +213,23 @@ while True:
                                 input("press any key to continue...")
                                 choco_av = False
                                 break
+                            except EOFError:
+                                print("No input available. Skipping interactive mode.")
                         elif chs == "n":
                             print("chocolatey installation skipped.")
                             choco_av = False
                 else:
                     choco_av = False
                     print("No packages selected for chocolatey installation.")
-                    input("press any key to continue...")
+                    try:
+                        input("press any key to continue...")
+                    except EOFError:
+                        print("No input available. Skipping interactive mode.")
                 if winget_av:
-                    input("press any key to start winget installation...")
+                    try:
+                        input("press any key to start winget installation...")
+                    except EOFError:
+                        print("No input available. Skipping interactive mode.")    
                     print("Starting winget packages installation...")
                     print("Installing: " + ", ".join(winget_comp))
                     for pkg in tqdm(winget_comp, desc="Installing with winget", unit="pkg"):
@@ -236,3 +264,4 @@ while True:
             break
         else:
             print("Invalid option. Try again.")
+
