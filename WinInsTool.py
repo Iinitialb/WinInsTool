@@ -1,7 +1,7 @@
 import subprocess
 from tqdm import tqdm
 import time
-
+user_choice = ""
 subprocess.run("cls", shell=True)
 winget_pkgs = [
     "Microsoft.Edge", "Google.Chrome", "Mozilla.Firefox", "Opera.Opera", "Brave.Brave", "VivaldiTechnologies.Vivaldi",
@@ -264,4 +264,5 @@ while True:
             break
         else:
             print("Invalid option. Try again.")
+
 
